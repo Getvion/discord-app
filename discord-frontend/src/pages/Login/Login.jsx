@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { AuthBox, RedirectInfo } from '../../shared/components';
-import { Header, Footer } from './';
-import { Inputs } from './Inputs';
+import { validateLoginForm } from '../../shared/utils/validators';
+import { Header, Footer, Inputs } from './';
 
 export const Login = () => {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    setIsFormValid(validateLoginForm({ mail, password }));
+  }, [mail, password, setIsFormValid]);
 
   const handleLogin = () => {
     console.log('login in');
