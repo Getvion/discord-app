@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import { Header, Footer, Inputs } from './';
 import { AuthBox, RedirectInfo } from '../../shared/components';
 import { validateLoginForm } from '../../shared/utils/validators';
-import { Header, Footer, Inputs } from './';
+
+import { getUserData, login } from '../../store/auth/authSlice';
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userData = useSelector(getUserData);
+
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
@@ -14,8 +22,13 @@ export const Login = () => {
   }, [mail, password, setIsFormValid]);
 
   const handleLogin = () => {
-    console.log('login in');
+    const userDetails = { mail, password };
+    dispatch(login(userDetails));
   };
+
+  useEffect(() => {
+    if (userData) navigate('/dashboard');
+  }, [userData, navigate, dispatch]);
 
   return (
     <AuthBox>

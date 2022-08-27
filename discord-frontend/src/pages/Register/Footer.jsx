@@ -33,7 +33,7 @@ export const Footer = ({ handleRegister, isFormValid }) => {
       </Tooltip>
       <RedirectInfo
         text='Already have an account? '
-        redirectText='Create an account'
+        redirectText='Login to account'
         additionalStyles={{ marginTop: '5px' }}
         redirectHandler={handlePushToLoginPage}
       />

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { AuthBox } from '../../shared/components';
 import { Inputs, Footer } from './';
 import { validateRegisterForm } from '../../shared/utils/validators';
+import { getUserData, register } from '../../store/auth/authSlice';
 
 export const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userData = useSelector(getUserData);
 
   const [mail, setMail] = useState('');
   const [username, setUsername] = useState('');
@@ -20,8 +24,13 @@ export const Register = () => {
   }, [mail, password, setIsFormValid, username]);
 
   const handleRegister = () => {
-    console.log('register');
+    const userDetails = { mail, username, password };
+    dispatch(register(userDetails));
   };
+
+  useEffect(() => {
+    if (userData) navigate('/dashboard');
+  }, [userData, navigate, dispatch]);
 
   return (
     <AuthBox>

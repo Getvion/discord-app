@@ -17,6 +17,7 @@ app.use('/api/auth', authRoutes);
 
 const server = http.createServer(app);
 
+// login = admin, password = adminadmin, mongodb
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
