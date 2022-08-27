@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Login, Register, Dashboard } from './pages';
+import { AlertNotification } from './shared/components';
 
 const App = () => (
   <div className='app'>
@@ -11,6 +12,7 @@ const App = () => (
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/*' element={<Navigate to='/dashboard' />} />
     </Routes>
+    <AlertNotification />
   </div>
 );
 
