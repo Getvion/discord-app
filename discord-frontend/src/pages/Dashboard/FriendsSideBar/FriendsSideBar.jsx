@@ -1,7 +1,9 @@
 import React from 'react';
 import { styled } from '@mui/system';
 
-import { AddFriendButton, FriendsList, FriendsTitle, PendingInvitationsList } from './components';
+import { AddFriendButton, FriendsTitle } from './components';
+import { FriendsList } from './FriendsList';
+import { PendingInvitationsList } from './PendingInvitationsList';
 
 const MainContainer = styled('div')({
   width: '224px',
