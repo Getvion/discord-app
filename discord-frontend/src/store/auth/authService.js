@@ -14,8 +14,9 @@ const register = async (userData) => {
 };
 
 // Logout user
-const logout = async () => {
+const logout = () => {
   localStorage.removeItem('user');
+  window.location.pathname = '/login';
 };
 
 // Login user

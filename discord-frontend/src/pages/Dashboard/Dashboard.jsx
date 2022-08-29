@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { styled } from '@mui/system';
 
-import { getUserData } from '../../store/auth/authSlice';
+import { getUserData, logout } from '../../store/auth/authSlice';
 
 import { SideBar, FriendsSideBar, Messenger, AppBar } from '.';
 
@@ -14,11 +13,11 @@ const Wrapper = styled('div')({
 });
 
 export const Dashboard = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const userData = useSelector(getUserData);
 
   useEffect(() => {
-    if (!userData) navigate('/login');
+    if (!userData) dispatch(logout());
   }, []);
 
   return (

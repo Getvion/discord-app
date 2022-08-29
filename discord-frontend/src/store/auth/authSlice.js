@@ -1,22 +1,29 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { authService } from './authService';
 
+// const token = thunkAPI.getState() // возвращает весь стейт
+
+// конфиг для отправки запросов, токен в service функции можно отправлять вторым параметром
+// const config = {
+//   headers: { Authorization: `Bearer ${token}` },
+// };
+
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem('user'));
 
 // login user
-export const login = createAsyncThunk('login', async (data, thunkAPI) => {
+export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
   return await authService.login(data);
 });
 
 // register user
-export const register = createAsyncThunk('register', async (userData, thunkAPI) => {
+export const register = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
   return await authService.register(userData);
 });
 
 // logout user
-export const logout = createAsyncThunk('auth/logout', async () => {
-  await authService.logout();
+export const logout = createAsyncThunk('auth/logout', () => {
+  authService.logout();
 });
 
 const initialState = {

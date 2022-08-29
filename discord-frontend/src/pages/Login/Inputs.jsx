@@ -15,7 +15,7 @@ export const Inputs = ({ mail, setMail, password, setPassword }) => {
       <InputWithLabel
         valaue={password}
         setValue={setPassword}
-        label='E-mail'
+        label='Password'
         type='password'
         placeholder='Enter password'
       />
