@@ -6,6 +6,8 @@ import { getUserData, logout } from '../../store/auth/authSlice';
 
 import { SideBar, FriendsSideBar, Messenger, AppBar } from '.';
 
+import { connectWithSocketServer } from '../../realtimeCommunication/socketConnection';
+
 const Wrapper = styled('div')({
   width: '100%',
   height: '100vh',
@@ -17,7 +19,7 @@ export const Dashboard = () => {
   const userData = useSelector(getUserData);
 
   useEffect(() => {
-    if (!userData) dispatch(logout());
+    userData ? connectWithSocketServer() : dispatch(logout());
   }, []);
 
   return (
