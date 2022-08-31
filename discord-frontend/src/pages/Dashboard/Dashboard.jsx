@@ -19,7 +19,7 @@ export const Dashboard = () => {
   const userData = useSelector(getUserData);
 
   useEffect(() => {
-    userData ? connectWithSocketServer() : dispatch(logout());
+    userData ? connectWithSocketServer(userData) : dispatch(logout());
   }, []);
 
   return (

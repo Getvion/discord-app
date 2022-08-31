@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const socketServer = require('./socketServer');
 const authRoutes = require('./routes/authRoutes');
+const friendInvitationRoutes = require('./routes/friendInvitationRoutes');
 
 const PORT = process.env.PORT || process.env.API_PORT;
 
@@ -15,16 +16,19 @@ app.use(cors());
 
 // register the routes
 app.use('/api/auth', authRoutes);
+app.use('/api/friend-invitation', friendInvitationRoutes);
 
 const server = http.createServer(app);
 socketServer.registerSocketServer(server);
 
-// login = admin, password = adminadmin, mongodb
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     server.listen(PORT, () => {
-      console.log(`Server is started on ${PORT}`);
+      console.log(`Server is listening on ${PORT}`);
     });
   })
-  .catch((err) => console.log('db connection failed, server not started', err));
+  .catch((err) => {
+    console.log('database connection failed. Server not started');
+    console.error(err);
+  });

@@ -1,3 +1,1 @@
-# Discord app
-
-## MERN
+# Discord app broken and archived

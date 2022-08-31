@@ -73,4 +73,4 @@ const authSlice = createSlice({
 export const authRedcuer = authSlice.reducer;
 export const {} = authSlice.actions;
 
-export const getUserData = (state) => state.auth.userData;
+export const getUserData = (state) => state.auth.userData.userDetails;
